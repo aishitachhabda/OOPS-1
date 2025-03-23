@@ -1,0 +1,71 @@
+//Colllege Library System Management
+import java.util.Scanner;
+
+class Book {
+    String title;
+    boolean isAvailable;
+
+    public Book(String title) {
+        this.title = title;
+        this.isAvailable = true;
+    }
+
+    public void borrow() {
+        if (isAvailable) {
+            isAvailable = false;
+            System.out.println("You borrowed: " + title);
+        } else {
+            System.out.println(title + " is already borrowed.");
+        }
+    }
+
+    public void returnBook() {
+        if (!isAvailable) {
+            isAvailable = true;
+            System.out.println("You returned: " + title);
+        } else {
+            System.out.println(title + " was not borrowed.");
+        }
+    }
+
+    public void checkAvailability() {
+        if (isAvailable) {
+            System.out.println(title + " is available.");
+        } else {
+            System.out.println(title + " is borrowed.");
+        }
+    }
+}
+
+public class LibrarySystem {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+
+        Book book1 = new Book("Java Programming");
+        Book book2 = new Book("Data Structures");
+
+        System.out.println("Library System");
+        System.out.println("1. Borrow Book");
+        System.out.println("2. Return Book");
+        System.out.println("3. Check Availability");
+        System.out.print("Choose an option: ");
+        int choice = sc.nextInt();
+
+        switch (choice) {
+            case 1:
+                book1.borrow();
+                book2.borrow();
+                break;
+            case 2:
+                book1.returnBook();
+                book2.returnBook();
+                break;
+            case 3:
+                book1.checkAvailability();
+                book2.checkAvailability();
+                break;
+            default:
+                System.out.println("Invalid choice.");
+        }
+    }
+}
